@@ -1,5 +1,6 @@
 import logo from './logo.svg';
-import React, { useCallback, useEffect, useState, setState } from "react";
+import React from "react";
+import EnglishClass from './englishClass/EnglishClass';
 import './App.css';
 
 // document.addEventListener('keydown', function(event){
@@ -8,37 +9,6 @@ import './App.css';
 
 
 function App() {
-
-  let [value, setValue] = useState('hello')
-  // this.state = ''
-
-  
-  const handleKeyPress = (event) => {
-    if(event.key === 'y'){ //backspace //13 enter 32 space
-      console.log(event.key)
-    }
-    if(event.key != 'Backspace' && event.key != 'Enter'){
-      setValue(value + event.key)
-    }
-    else if(event.key === 'Backspace'){
-      setValue(value.slice(0,-1))
-    }
-    else if(event.key === 'Enter'){
-      setValue('')
-    }
-    
-    console.log(event.key)
-  }
-
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyPress);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [handleKeyPress]);
-  
-  
 
   const textToType = ["Beef with Jeef", "Poo", "Pee", "PooPoo", "PeePee"];
   
@@ -58,21 +28,8 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         
         {/* <TextToTypeList numbers={textToType} /> */}
-        <p>
-        {value}
-        </p>
-        <form>
-  
-        </form>
-              <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn React
-              </a>
-            </header>
+        <EnglishClass />
+        </header>
     </div>
   );
 }
