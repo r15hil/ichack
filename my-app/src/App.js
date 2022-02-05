@@ -9,26 +9,24 @@ import './App.css';
 
 function App() {
 
-  // const [toggleMobileNavbar, setToggleMobileNavbar] = useState(false)
-
-  // const handleToggleNavBar = () => {
-  //     setToggleMobileNavbar(!toggleMobileNavbar)
-  // }
-
-  // const handleCloseNavBar = () => {
-  //     setToggleMobileNavbar(false)
-  // }
-
-let [value, setValue] = useState('hello')
-// this.state = ''
+  let [value, setValue] = useState('hello')
+  // this.state = ''
 
   
   const handleKeyPress = (event) => {
     if(event.key === 'y'){ //backspace //13 enter 32 space
       console.log(event.key)
     }
-
-    setValue(value + event.key)
+    if(event.key != 'Backspace' && event.key != 'Enter'){
+      setValue(value + event.key)
+    }
+    else if(event.key === 'Backspace'){
+      setValue(value.slice(0,-1))
+    }
+    else if(event.key === 'Enter'){
+      setValue('')
+    }
+    
     console.log(event.key)
   }
 
