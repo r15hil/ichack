@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import React from "react";
 import EnglishClass from './englishClass/EnglishClass';
+import MathsClass from './mathsClass/MathsClass';
 import './App.css';
 
 // document.addEventListener('keydown', function(event){
@@ -28,7 +29,8 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         
         {/* <TextToTypeList numbers={textToType} /> */}
-        <EnglishClass />
+        <EnglishClass/>
+        
         </header>
     </div>
   );

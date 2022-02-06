@@ -9,9 +9,12 @@ function randomWord(arr) {
 const EnglishClass = () =>{
 
     let [value, setValue] = useState('')
+    // let [level, setLevel] = useState(0)
     let [score, setScore] = useState(0)
+    //let [wordArray, setWordArray] = useState([["pear"], ["elephant", "medium", "potato", "shortbread", "compound"], ["blasphemy", "outrageous", "unlawful", "television"]])
     let [words, setWords]  = useState(["apple", "pear", "banana", "pineapple", "avocado", "grapes", "orange"])
-    let randWord = randomWord(words)
+    //["apple", "pear", "banana", "pineapple", "avocado", "grapes", "orange"]
+    let [randWord, setRandWord] = useState(randomWord(words))
     let [speechText, setSpeechText] = useState("Spell "+ randWord)
     
     const handleKeyPress = (event) => {
@@ -28,27 +31,28 @@ const EnglishClass = () =>{
         setValue(value.toLowerCase())
         if(words.includes(value)){
             setScore(score += 100)
-            console.log(typeof words)
             var index = words.indexOf(value)
             words.splice(index, 1)
             if (words.length === 0){
-                setSpeechText("Wow! You've done it! Good Job!")
+                //console.log("newLevelArray ",newLevelArray)
+                
+                //console.log("words", words)
+                setSpeechText("Wow! You've done it! Good Job! What Good Proficiency in English!!")
             }
             else{
                 randWord = randomWord(words)
                 setSpeechText("Spell "+ randWord)
             }
             
-        }
+        } 
         setValue('')
       }
       
       console.log(event.key)
     }
-  
     useEffect(() => {
       document.addEventListener("keydown", handleKeyPress);
-  
+      
       return () => {
         document.removeEventListener("keydown", handleKeyPress);
       };
@@ -70,7 +74,6 @@ const EnglishClass = () =>{
 
     )
 }
-
 export default EnglishClass
 
 
