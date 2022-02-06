@@ -35,27 +35,24 @@ const EnglishClassEasy = (props) => {
       setValue(value.toLowerCase())
       tempValue = value.toLowerCase()
       // console.log("Lowercase:" + tempValue)
-      if (words.includes(tempValue)) {
+      if (tempWords.includes(tempValue)) {
         setScore(score += 100)
-        var index = words.indexOf(tempValue)
-        words.splice(index, 1)
-        if (words.length === 0) {
+        var index = tempWords.indexOf(tempValue)
+        tempWords.splice(index, 1)
+        if (tempWords.length === 0) {
           //console.log("newLevelArray ",newLevelArray)
-          setLevel(level+=1)
-          setWords(wordArray[level])
-          tempWords = wordArray[level]
+        
+          if(level <= 1){
+            setLevel(level+=1)
+            setWords(wordArray[level])
+            tempWords = wordArray[level]
           
-          wordtoType = randomWord(tempWords)
-
-          if(level <= 2){
+            wordtoType = randomWord(tempWords)
             setSpeechText("Wow! You've done it! Good Job! What Good Proficiency in English!. Moving to level " + level + ". Now spell " + wordtoType )
           }
           else{
             setSpeechText("Well done!! You've completed all your words for the day." )
           }
-          
-
-
         }
         else {
           wordtoType = randomWord(tempWords)
