@@ -17,6 +17,7 @@ const EnglishClass = (props) => {
   let [words, setWords] = useState(["apple"])
   let [wordtoType, setwordtoType] = useState(randomWord(words))
   let [speechText, setSpeechText] = useState("Spell " + wordtoType)
+  let [isCorrect, setCorrect] = useState(0)
 
   // var opacity = 0;
   // var intervalID = 0;
@@ -58,6 +59,7 @@ const EnglishClass = (props) => {
       // console.log("Lowercase:" + tempValue)
       if (tempWords.includes(tempValue)) {
         setScore(score += 100)
+        setCorrect(1)
         var index = tempWords.indexOf(tempValue)
         tempWords.splice(index, 1)
         if (tempWords.length === 0) {
@@ -81,8 +83,9 @@ const EnglishClass = (props) => {
         }
 
       }
-      else{
+      else {
         setSpeechText("Spell " + wordtoType)
+        setCorrect(-1)
       }
       setValue('')
       tempValue = ''
@@ -105,6 +108,13 @@ const EnglishClass = (props) => {
         <div className='value'>{score}</div>
         <div className='subsubheader'>Word: </div>
         <div className="value">{value}</div>
+        <div className={`${isCorrect === 1 ? "correct" : isCorrect === -1 ? "incorrect" : "middling"}`}>
+          {
+            isCorrect === 1 ? "CORRECT ✔"
+              : isCorrect === -1 ? "INCORRECT ✘"
+                : ""
+          }
+        </div>
         <Speech text={speechText}
           pitch="1.0"
           rate="1.0"

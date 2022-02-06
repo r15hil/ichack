@@ -16,20 +16,18 @@ function randomWord(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 function postProcess(inputString) {
-  var newString = ''
+  var newString = inputString
   if (inputString.includes('plus')) {
     newString = inputString.replaceAll('plus', '+')
-    // console.log("Plus")
   }
   if (inputString.includes('minus')) {
-    newString = inputString.replaceAll('minus', '-')
-    // console.log("Minus")
+    newString = newString.replaceAll('minus', '-')
   }
   if (inputString.includes('times')) {
-    newString = inputString.replaceAll('times', '*')
+    newString = newString.replaceAll('times', '*')
   }
   if (inputString.includes('divide')) {
-    newString = inputString.replaceAll('divide', '/')
+    newString = newString.replaceAll('divide', '/')
   }
   return newString
 }
@@ -44,7 +42,7 @@ const MathsClass = (props) => {
   // let [speechText, setSpeechText] = useState("Calculate " + randWord)
   let [isComplete, setComplete] = useState(false)
   let [page, setPage] = useState(<MathsClass userInput="" />)
-
+  let [isCorrect, setCorrect] = useState(0)
 
   const handleKeyPress = (event) => {
     if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) {
@@ -58,6 +56,7 @@ const MathsClass = (props) => {
       var evaluatedInput = eval(postProcess(randWord))
       if (evaluatedInput === evaluatedVal) {
         setScore(score += 100)
+        setCorrect(1)
         var index = words.indexOf(randWord)
         words.splice(index, 1)
         if (words.length === 0) {
@@ -69,6 +68,8 @@ const MathsClass = (props) => {
           setRandWord(randomWord(words))
         }
 
+      } else {
+        setCorrect(-1)
       }
       setValue('')
     }
@@ -94,6 +95,13 @@ const MathsClass = (props) => {
         <div className='value'>{postProcess(randWord)}</div>
         <div className='subsubheader'>Answer:</div>
         <div className='value'>{value}</div>
+        <div className={`${isCorrect === 1 ? "correct" : isCorrect === -1 ? "incorrect" : "middling"}`}>
+          {
+            isCorrect === 1 ? "CORRECT ✔"
+              : isCorrect === -1 ? "INCORRECT ✘"
+                : ""
+          }
+        </div>
         <Speech text={amendOutput(randWord)}
           style={{ width: "50%" }}
           pitch="1.0"
