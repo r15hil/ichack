@@ -42,8 +42,8 @@ const EnglishClass = (props) => {
     //   if(event.key === 'y'){ //backspace //13 enter 32 space
     //     console.log(event.key)
     //   }
-    var tempValue = value
-    var tempWords = words
+    var tempValue = value // ''
+    var tempWords = words // apple
     if (event.keyCode >= 65 && event.keyCode <= 90) {
       setValue(value + event.key)
       tempValue += event.key
@@ -81,7 +81,11 @@ const EnglishClass = (props) => {
         }
 
       }
+      else{
+        setSpeechText("Spell " + wordtoType)
+      }
       setValue('')
+      tempValue = ''
     }
   }
   useEffect(() => {
