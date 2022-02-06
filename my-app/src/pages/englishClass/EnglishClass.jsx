@@ -7,7 +7,7 @@ function randomWord(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-const EnglishClassEasy = (props) => {
+const EnglishClass = (props) => {
 
   let [value, setValue] = useState('')
   let [level, setLevel] = useState(0)
@@ -87,4 +87,4 @@ const EnglishClassEasy = (props) => {
     </div>
   )
 }
-export default EnglishClassEasy
+export default EnglishClass

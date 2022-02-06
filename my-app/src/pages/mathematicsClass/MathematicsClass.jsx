@@ -34,11 +34,11 @@ function postProcess(inputString) {
   return newString
 }
 
-const MathsClassMedium = (props) => {
+const MathsClass = (props) => {
 
   let [value, setValue] = useState("")
   let [score, setScore] = useState(0)
-  let [words, setWords] = useState(["2 plus 2 times 6", "4 plus 2 plus 8 minus 1", "9 times 4 times 6", "7 plus 8 minus 3", "6 minus 5 divide 1", "4 divide 2 + eight", "9 minus 3", "2 times 9"])
+  let [words, setWords] = useState(["2 plus 2 minus 3", "4 plus 2 times 5", "9 times 4 plus 13", "7 plus 8 minus 2", "6 minus 5 minus 1", "4 divide 2 plus 4", "9 minus 3 divide 3", "2 times 9 plus 17"])
 
   let [randWord, setRandWord] = useState(randomWord(words))
   let [speechText, setSpeechText] = useState("Calculate " + randWord)
@@ -99,4 +99,4 @@ const MathsClassMedium = (props) => {
   )
 }
 
-export default MathsClassMedium
+export default MathsClass

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ClassesList from "./pages/homePage/classesList.jsx";
 import './App.css';
-import EnglishClassEasy from "./pages/englishClass/EnglishClassEasy.jsx";
-import MathematicsClassEasy from "./pages/mathematicsClass/MathematicsClassEasy.jsx";
-import ChemistryClassEasy from "./pages/chemistryClass/ChemistryClassEasy.jsx";
+import EnglishClass from "./pages/englishClass/EnglishClass.jsx";
+import MathematicsClass from "./pages/mathematicsClass/MathematicsClass.jsx";
+import ChemistryClass from "./pages/chemistryClass/ChemistryClass.jsx";
 
 
 function App() {
@@ -47,15 +47,15 @@ function App() {
       setInput('')
     }
     else if (englishSelected.test(tmpInput)) {
-      setPage(<EnglishClassEasy userInput="" />)
+      setPage(<EnglishClass userInput="" />)
       setInput('')
     }
     else if (mathsSelected.test(tmpInput)) {
-      setPage(<MathematicsClassEasy userInput="" />)
+      setPage(<MathematicsClass userInput="" />)
       setInput('')
     }
     else if (chemistrySelected.test(tmpInput)) {
-      setPage(<ChemistryClassEasy userInput="" />)
+      setPage(<ChemistryClass userInput="" />)
       setInput('')
     }
     else {
