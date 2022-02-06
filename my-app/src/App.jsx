@@ -29,11 +29,7 @@ function App() {
 
   const handleKeyPress = (event) => {
     var tmpInput = input
-    if (event.key !== 'Backspace' && event.key !== 'Enter') {
-      setInput(input + event.key)
-      tmpInput = tmpInput + event.key
-    }
-    else if (event.key === 'Backspace') {
+    if (event.key === 'Backspace') {
       setInput(input.slice(0, -1))
       tmpInput = input.slice(0, -1)
     }
@@ -41,28 +37,41 @@ function App() {
       setInput('')
       tmpInput = ''
     }
+    else if (event.keyCode >= 49 && event.keyCode <= 90) {
+      setInput(input + event.key)
+      tmpInput = tmpInput + event.key
+    }
 
-    if (backSelected.test(tmpInput)) {
-      setPage(<ClassesList userInput="" />)
-      setInput('')
-    }
-    else if (englishSelected.test(tmpInput)) {
-      setPage(<EnglishClass userInput="" />)
-      setInput('')
-    }
-    else if (mathsSelected.test(tmpInput)) {
-      setPage(<MathematicsClass userInput="" />)
-      setInput('')
-    }
-    else if (chemistrySelected.test(tmpInput)) {
-      setPage(<ChemistryClass userInput="" />)
-      setInput('')
+    var matched = false
+    if (page.type !== ClassesList) {
+      if (backSelected.test(tmpInput)) {
+        setPage(<ClassesList userInput="" />)
+        setInput('')
+        matched = true
+      }
     }
     else {
+      if (englishSelected.test(tmpInput)) {
+        setPage(<EnglishClass userInput="" />)
+        setInput('')
+        matched = true
+      }
+      else if (mathsSelected.test(tmpInput)) {
+        setPage(<MathematicsClass userInput="" />)
+        setInput('')
+        matched = true
+      }
+      else if (chemistrySelected.test(tmpInput)) {
+        setPage(<ChemistryClass userInput="" />)
+        setInput('')
+        matched = true
+      }
+    }
+    if (!matched) {
       setPage(<page.type userInput={tmpInput} />)
     }
-  }
 
+  }
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyPress);

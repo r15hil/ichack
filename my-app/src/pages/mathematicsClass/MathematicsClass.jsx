@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react'
 import Header from '../../components/header'
 import OptionsText from '../../components/optionsText'
 import Speech from 'react-speech';
+import congratsClass from '../congratsClass/congratsClass';
 
 function amendOutput(string) {
-  if (string == "Wow! You've done it! Good Job! What Good Proficiency in Maths!!") {
+  if (string == "Wow! You've done it! Good Job! What Good Proficiency in Mathematics!!") {
     return string
   }
   else
     return string + "is"
 }
-
 
 function randomWord(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -41,7 +41,9 @@ const MathsClass = (props) => {
   let [words, setWords] = useState(["2 plus 2", "4 plus 2", "9 times 4", "7 plus 8", "6 minus 5", "4 divide 2", "9 minus 3", "2 times 9"])
 
   let [randWord, setRandWord] = useState(randomWord(words))
-  let [speechText, setSpeechText] = useState("Calculate " + randWord)
+  // let [speechText, setSpeechText] = useState("Calculate " + randWord)
+  let [isComplete, setComplete] = useState(false)
+  let [page, setPage] = useState(<MathsClass userInput="" />)
 
 
   const handleKeyPress = (event) => {
@@ -59,7 +61,8 @@ const MathsClass = (props) => {
         var index = words.indexOf(randWord)
         words.splice(index, 1)
         if (words.length === 0) {
-          setRandWord("Wow! You've done it! Good Job! What Good Proficiency in Maths!!")
+          setRandWord("Wow! You've done it! Good Job! What Good Proficiency in Mathematics!!")
+          setComplete(true)
         }
         else {
 
@@ -69,9 +72,8 @@ const MathsClass = (props) => {
       }
       setValue('')
     }
-
-    console.log("Event key:", event.key)
   }
+
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyPress);
@@ -83,18 +85,25 @@ const MathsClass = (props) => {
 
   return (
     <div>
-      <header>Maths Class</header>
-
-      <p>Calculate: {postProcess(randWord)}</p>
-      <p>Score: {score}</p>
-      {/* {setSpeechText(randWord)} */}
-      <p>Answer: {value}</p>
-      <Speech text={amendOutput(randWord)}
-        pitch="1.0"
-        rate="1.0"
-        volume="1.0"
-        voice="Google UK English Female" />
-      <OptionsText text="Back" userInput={props.userInput} />
+      <Header title="Mathematics" />
+      <h2>Today we are going to learn maths!</h2>
+      <div className='classContent'>
+        <div className='subsubheader'>Score:</div>
+        <div className='value'>{score}</div>
+        <div className='subsubheader'>Question:</div>
+        <div className='value'>{postProcess(randWord)}</div>
+        <div className='subsubheader'>Answer:</div>
+        <div className='value'>{value}</div>
+        <Speech text={amendOutput(randWord)}
+          style={{ width: "50%" }}
+          pitch="1.0"
+          rate="1.0"
+          volume="1.0"
+          voice="Google UK English Female" />
+        <p className='helperTextOther'>Type the answers to the above equations</p>
+      </div>
+      {/* <div> {isComplete ? setPage(<congratsClass userInput="" />) : setPage(<page.type userInput="" />)}</div> */}
+      <OptionsText backButton="true" text="Back" userInput={props.userInput} />
     </div>
   )
 }

@@ -7,23 +7,19 @@ import OptionsText from '../../components/optionsText'
 
 const ClassesList = (props) => {
 
-  // let [userInput, setUserInput] = useState('')
-  // const changeOptionsHighlight = (newUserInput) => {
-  //   setUserInput(newUserInput);
-  // }
-
   return (
     <div>
       <Header title="Welcome to the School of Jeef!" />
       <ul style={{ width: '100%', listStyleType: 'none' }}>
         {AllClasses.map((item, index) => {
           return (
-            <li key={index}>
+            <li className='textbox subHeader' key={index}>
               <OptionsText text={item.name} userInput={props.userInput} />
             </li>
           )
         })}
       </ul>
+      <p className='helperTextMain'>Type to get started!</p>
     </div>
   )
 }

@@ -29,8 +29,12 @@ const ChemistryClass = (props) => {
   return (
     <div>
       <Header title="Welcome to Chemistry Class!" />
-      <p>Hello this is the new page</p>
-      <OptionsText text="Back" userInput={props.userInput} />
+      <h2>Today we are going to learn some chemistry!</h2>
+      <div className='classContent'>
+        <p>Hello this is the new page</p>
+        <p className='helperTextOther'>Sorry, this page is still under construction!</p>
+      </div>
+      <OptionsText backButton="true" text="Back" userInput={props.userInput} />
     </div>
   )
 }

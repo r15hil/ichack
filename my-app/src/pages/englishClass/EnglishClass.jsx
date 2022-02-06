@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Header from '../../components/header'
 import OptionsText from '../../components/optionsText'
 import Speech from 'react-speech';
+import "../../App.css"
 
 function randomWord(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -10,18 +11,32 @@ function randomWord(arr) {
 const EnglishClass = (props) => {
 
   let [value, setValue] = useState('')
-  // let [level, setLevel] = useState(0)
   let [score, setScore] = useState(0)
-  //let [wordArray, setWordArray] = useState([["pear"], ["elephant", "medium", "potato", "shortbread", "compound"], ["blasphemy", "outrageous", "unlawful", "television"]])
   let [words, setWords] = useState(["apple", "pear", "banana", "pineapple", "avocado", "grapes", "orange"])
-  //["apple", "pear", "banana", "pineapple", "avocado", "grapes", "orange"]
   let [randWord, setRandWord] = useState(randomWord(words))
   let [speechText, setSpeechText] = useState("Spell " + randWord)
 
+  // var opacity = 0;
+  // var intervalID = 0;
+  // window.onload = fadeout;
+  // function fadeout() {
+  //   setInterval(hide, 200);
+  // }
+  // function hide() {
+  //   var body = document.getElementById("body");
+  //   opacity =
+  //     Number(window.getComputedStyle(body).getPropertyValue("opacity"))
+
+  //   if (opacity > 0) {
+  //     opacity = opacity - 0.1;
+  //     body.style.opacity = opacity
+  //   }
+  //   else {
+  //     clearInterval(intervalID);
+  //   }
+  // }
+
   const handleKeyPress = (event) => {
-    //   if(event.key === 'y'){ //backspace //13 enter 32 space
-    //     console.log(event.key)
-    //   }
     if (event.keyCode >= 65 && event.keyCode <= 90) {
       setValue(value + event.key)
     }
@@ -35,9 +50,6 @@ const EnglishClass = (props) => {
         var index = words.indexOf(value)
         words.splice(index, 1)
         if (words.length === 0) {
-          //console.log("newLevelArray ",newLevelArray)
-
-          //console.log("words", words)
           setSpeechText("Wow! You've done it! Good Job! What Good Proficiency in English!!")
         }
         else {
@@ -48,8 +60,6 @@ const EnglishClass = (props) => {
       }
       setValue('')
     }
-
-    console.log(event.key)
   }
   useEffect(() => {
     document.addEventListener("keydown", handleKeyPress);
@@ -61,15 +71,21 @@ const EnglishClass = (props) => {
 
   return (
     <div>
-      <header>English Class</header>
-      <p>Score: {score}</p>
-      <p>Word: {value}</p>
-      <Speech text={speechText}
-        pitch="1.0"
-        rate="1.0"
-        volume="1.0"
-        voice="Google UK English Female" />
-      <OptionsText text="Back" userInput={props.userInput} />
+      <Header title="English" />
+      <h2>Today we are going to learn some spellings!</h2>
+      <div className='classContent'>
+        <div className='subsubheader'>Score: </div>
+        <div className='value'>{score}</div>
+        <div className='subsubheader'>Word: </div>
+        <div className="value">{value}</div>
+        <Speech text={speechText}
+          pitch="1.0"
+          rate="1.0"
+          volume="1.0"
+          voice="Google UK English Female" />
+        <p className='helperTextOther'>Type the words dictated (in lower case)</p>
+      </div>
+      <OptionsText backButton="true" text="Back" userInput={props.userInput} />
     </div>
   )
 }

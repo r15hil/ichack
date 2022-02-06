@@ -13,7 +13,7 @@ function OptionsText(props) {
     var unhighlighted = props.text.slice(count, props.text.length)
 
     return (
-        <div>
+        <div className={props.backButton === "true" ? "backButton" : ""}>
             <em className="highlight" >{highlighted}</em>{unhighlighted}
         </div>
     );
