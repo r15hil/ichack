@@ -7,13 +7,13 @@ function randomWord(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-const EnglishClass = (props) => {
+const EnglishClassMedium = (props) => {
 
   let [value, setValue] = useState('')
   // let [level, setLevel] = useState(0)
   let [score, setScore] = useState(0)
   //let [wordArray, setWordArray] = useState([["pear"], ["elephant", "medium", "potato", "shortbread", "compound"], ["blasphemy", "outrageous", "unlawful", "television"]])
-  let [words, setWords] = useState(["apple", "pear", "banana", "pineapple", "avocado", "grapes", "orange"])
+  let [words, setWords] = useState(["elephant", "medium", "potato", "shortbread", "compound"])
   //["apple", "pear", "banana", "pineapple", "avocado", "grapes", "orange"]
   let [randWord, setRandWord] = useState(randomWord(words))
   let [speechText, setSpeechText] = useState("Spell " + randWord)
@@ -27,7 +27,7 @@ const EnglishClass = (props) => {
     }
     else if (event.key === 'Backspace') {
       setValue(value.slice(0, -1))
-    }
+    } 
     else if (event.key === 'Enter') {
       setValue(value.toLowerCase())
       if (words.includes(value)) {
@@ -73,4 +73,4 @@ const EnglishClass = (props) => {
     </div>
   )
 }
-export default EnglishClass
+export default EnglishClassMedium

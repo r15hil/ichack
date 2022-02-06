@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Header from '../../components/header'
 import OptionsText from '../../components/optionsText'
 
-const ChemistryClass = (props) => {
+const ChemistryClassEasy = (props) => {
 
   let [value, setValue] = useState('')
 
@@ -35,4 +35,4 @@ const ChemistryClass = (props) => {
   )
 }
 
-export default ChemistryClass
+export default ChemistryClassEasy
