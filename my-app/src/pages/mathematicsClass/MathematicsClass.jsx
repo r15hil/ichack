@@ -18,18 +18,18 @@ function randomWord(arr) {
 function postProcess(inputString) {
   var newString = ''
   if (inputString.includes('plus')) {
-    newString = inputString.replace('plus', '+')
+    newString = inputString.replaceAll('plus', '+')
     // console.log("Plus")
   }
   if (inputString.includes('minus')) {
-    newString = inputString.replace('minus', '-')
+    newString = inputString.replaceAll('minus', '-')
     // console.log("Minus")
   }
   if (inputString.includes('times')) {
-    newString = inputString.replace('times', '*')
+    newString = inputString.replaceAll('times', '*')
   }
   if (inputString.includes('divide')) {
-    newString = inputString.replace('divide', '/')
+    newString = inputString.replaceAll('divide', '/')
   }
   return newString
 }
@@ -38,7 +38,7 @@ const MathsClass = (props) => {
 
   let [value, setValue] = useState("")
   let [score, setScore] = useState(0)
-  let [words, setWords] = useState(["2 plus 2", "4 plus 2", "9 times 4", "7 plus 8", "6 minus 5", "4 divide 2", "9 minus 3", "2 times 9"])
+  let [words, setWords] = useState(["2 plus 2 minus 3", "4 plus 2 times 5", "9 times 4 plus 13", "7 plus 8 minus 2", "6 minus 5 minus 1", "4 divide 2 plus 4", "9 minus 3 divide 3", "2 times 9 plus 17"])
 
   let [randWord, setRandWord] = useState(randomWord(words))
   // let [speechText, setSpeechText] = useState("Calculate " + randWord)

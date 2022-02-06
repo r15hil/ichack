@@ -11,10 +11,12 @@ function randomWord(arr) {
 const EnglishClass = (props) => {
 
   let [value, setValue] = useState('')
+  let [level, setLevel] = useState(0)
   let [score, setScore] = useState(0)
-  let [words, setWords] = useState(["apple", "pear", "banana", "pineapple", "avocado", "grapes", "orange"])
-  let [randWord, setRandWord] = useState(randomWord(words))
-  let [speechText, setSpeechText] = useState("Spell " + randWord)
+  let [wordArray, setWordArray] = useState([["apple"], ["elephant"], ["blasphemy"]])
+  let [words, setWords] = useState(["apple"])
+  let [wordtoType, setwordtoType] = useState(randomWord(words))
+  let [speechText, setSpeechText] = useState("Spell " + wordtoType)
 
   // var opacity = 0;
   // var intervalID = 0;
@@ -37,24 +39,45 @@ const EnglishClass = (props) => {
   // }
 
   const handleKeyPress = (event) => {
+    //   if(event.key === 'y'){ //backspace //13 enter 32 space
+    //     console.log(event.key)
+    //   }
+    var tempValue = value
+    var tempWords = words
     if (event.keyCode >= 65 && event.keyCode <= 90) {
       setValue(value + event.key)
+      tempValue += event.key
     }
     else if (event.key === 'Backspace') {
       setValue(value.slice(0, -1))
+      tempValue = value.slice(0, -1)
     }
     else if (event.key === 'Enter') {
       setValue(value.toLowerCase())
-      if (words.includes(value)) {
+      tempValue = value.toLowerCase()
+      // console.log("Lowercase:" + tempValue)
+      if (tempWords.includes(tempValue)) {
         setScore(score += 100)
-        var index = words.indexOf(value)
-        words.splice(index, 1)
-        if (words.length === 0) {
-          setSpeechText("Wow! You've done it! Good Job! What Good Proficiency in English!!")
+        var index = tempWords.indexOf(tempValue)
+        tempWords.splice(index, 1)
+        if (tempWords.length === 0) {
+          //console.log("newLevelArray ",newLevelArray)
+
+          if (level <= 1) {
+            setLevel(level += 1)
+            setWords(wordArray[level])
+            tempWords = wordArray[level]
+
+            wordtoType = randomWord(tempWords)
+            setSpeechText("Wow! You've done it! Good Job! What Good Proficiency in English!. Moving to level " + level + ". Now spell " + wordtoType)
+          }
+          else {
+            setSpeechText("Well done!! You've completed all your words for the day.")
+          }
         }
         else {
-          randWord = randomWord(words)
-          setSpeechText("Spell " + randWord)
+          wordtoType = randomWord(tempWords)
+          setSpeechText("Spell " + wordtoType)
         }
 
       }
