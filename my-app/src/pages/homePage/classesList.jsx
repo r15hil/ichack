@@ -9,7 +9,7 @@ const ClassesList = (props) => {
 
   return (
     <div>
-      <Header title="Welcome to the School of Jeef!" />
+      <Header title="Welcome!" />
       <ul style={{ width: '100%', listStyleType: 'none' }}>
         {AllClasses.map((item, index) => {
           return (
